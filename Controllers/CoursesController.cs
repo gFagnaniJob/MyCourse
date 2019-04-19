@@ -6,12 +6,12 @@ namespace MyCourse.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Sono Index");
+            return View(); //cerca una view dentro la cartella View/Courses
         }
 
         public IActionResult Detail(string id)
         {
-            return Content($"Sono Detail, ho ricevuto l'id {id}");
+            return View();
         }
     }
 }
