@@ -5,22 +5,25 @@ using MyCourse.Models.ViewModels;
 
 namespace MyCourse.Controllers
 {
-    public class CoursesController : Controller
+  public class CoursesController : Controller
+  {
+    private readonly CourseService courseService;
+    public CoursesController(CourseService courseService)
     {
-        public IActionResult Index()
-        {
-            ViewData["Title"] = "Catalogo dei corsi";
-            var courseService = new CourseService();
-            List<CourseViewModel> courses = courseService.GetCourses();
-            return View(courses); //cerca una view dentro la cartella View/Courses
-        }
-
-        public IActionResult Detail(int id)
-        {
-            var courseService = new CourseService();
-            CourseDetailViewModel viewModel = courseService.GetCourse(id);
-            ViewData["Title"] = viewModel.Title;
-            return View(viewModel);
-        }
+      this.courseService = courseService;
     }
+    public IActionResult Index()
+    {
+      ViewData["Title"] = "Catalogo dei corsi";
+      List<CourseViewModel> courses = courseService.GetCourses();
+      return View(courses); //cerca una view dentro la cartella View/Courses
+    }
+
+    public IActionResult Detail(int id)
+    {
+      CourseDetailViewModel viewModel = courseService.GetCourse(id);
+      ViewData["Title"] = viewModel.Title;
+      return View(viewModel);
+    }
+  }
 }
