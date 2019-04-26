@@ -6,6 +6,7 @@ namespace MyCourse
     {
         public IActionResult Index()
         {
+            ViewData["Title"] = "Home";
             return View();
         }
     }
