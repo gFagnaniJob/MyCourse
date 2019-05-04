@@ -16,13 +16,13 @@ namespace MyCourse.Controllers
     public async Task<IActionResult> Index()
     {
       ViewData["Title"] = "Catalogo dei corsi";
-      List<CourseViewModel> courses = await courseService.GetCourses();
+      List<CourseViewModel> courses = await courseService.GetCoursesAsync();
       return View(courses); //cerca una view dentro la cartella View/Courses
     }
 
     public async Task<IActionResult> Detail(int id)
     {
-      CourseDetailViewModel viewModel = await courseService.GetCourse(id);
+      CourseDetailViewModel viewModel = await courseService.GetCourseAsync(id);
       ViewData["Title"] = viewModel.Title;
       return View(viewModel);
     }
